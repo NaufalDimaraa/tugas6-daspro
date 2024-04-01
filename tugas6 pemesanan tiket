@@ -1,0 +1,76 @@
+print("****************")
+print("* Selamat Datang di Layanan Pemesanan Tiket Film *")
+print("****************")
+
+nama = input("Masukkan nama Anda: ")
+usia = int(input("Masukkan usia Anda: "))
+
+if usia < 17:
+    print("Maaf, Anda tidak dapat menonton film karena usia Anda belum mencukupi.")
+    exit()
+
+daftargenre = ['1.Action', '2.Comedy', '3.Horror', '4.Drama', '5.Anime']
+hari = ['1.Senin', '2.Selasa', '3.Rabu', '4.Kamis', '5.Jumat', '6.Sabtu', '7.Minggu']
+
+harga_tiket = {'1.Senin': 30, '2.Selasa': 30, '3.Rabu': 30, '4.Kamis': 30, '5.Jumat': 30, '6.Sabtu': 50, '7.Minggu': 50}
+
+print("\nDaftar Genre:")
+for genre in daftargenre:
+    print(genre)
+
+pilihangenre = input("Masukkan Genre pilihan berdasarkan angka: ")
+
+if pilihangenre in ['1', '2', '3', '4', '5']:
+    genreindex = int(pilihangenre) - 1
+    genrename = daftargenre[genreindex].split('.')[1]
+
+    print(f"Anda memilih genre {genrename}, berikut film-film yang masih tersedia:")
+
+    if genreindex == 0:
+        filmlist = ['1.Don', '2.Dhom', '3.Khris', '4.Gundala', '5.Buffalo']
+    elif genreindex == 1:
+        filmlist = ['1.Gara Gara Warisan', '2.Mangga Muda', '3.Cukpacupki', '4.Susah Sinyal', '5.Imperfect']
+    elif genreindex == 2:
+        filmlist = ['1.Leak (1981)', '2.Perjanjian Gaib (2023)', '3.Waktu Magrib', '4.Bayi Ajaib (2023)', '5.The Smell']
+    elif genreindex == 3:
+        filmlist = ['1.One Flew Over the Cuckoo’s Nest', '2.Forrest Gump', '3.Dua Garis Biru', '4.Bumi Manusia', '5.Movie Lover']
+    else:
+        filmlist = ['1.Naruto', '2.Spirited Away', '3.Your Name', '4.Suzume', '5.One Piece']
+
+    for film in filmlist:
+        print(film)
+
+    pilihanfilm = input("Masukkan nomor film yang ingin ditonton: ")
+    filmindex = int(pilihanfilm) - 1
+    chosenfilm = filmlist[filmindex]
+
+    print("Berikut hari tonton yang tersedia:")
+    for day in hari:
+        print(day)
+
+    pilihanhari = input("Pilih hari yang diinginkan: ")
+    haritonton = hari[int(pilihanhari) - 1]
+
+    harga = harga_tiket[haritonton]
+    jumlahtiket = int(input("Berapa banyak tiket yang ingin dibeli: "))
+
+    print("\n****************")
+    print("* Detail Pesanan *")
+    print("****************")
+    print("Nama Pengguna:", nama)
+    print("Genre Film:", genrename)
+    print("Judul Film:", chosenfilm)
+    print("Hari Tonton:", haritonton)
+    print("Jumlah Tiket:", jumlahtiket)
+    totalharga = harga * jumlahtiket
+    print("Total Harga: Rp." + str(totalharga) + ".000")
+
+    confirmation = input("Apakah Anda ingin melanjutkan pemesanan? (ya/tidak): ")
+
+    if confirmation.lower() == "ya":
+        print("Terima kasih atas pemesanan Anda!")
+    else:
+        print("Pemesanan dibatalkan.")
+
+else:
+    print("Pilihan tidak valid")
